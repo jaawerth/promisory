@@ -1,0 +1,38 @@
+{
+  "name": "swear",
+  "version": "1.0.0-prerelease-alpha",
+  "description": "Promise utility methods. It'll come in handy, I swear... and that's a promise!",
+  "main": "index.js",
+  "scripts": {
+    "test": "tape tests/**/*.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jaawerth/swear.git"
+  },
+  "keywords": [
+    "Promise",
+    "utilities",
+    "map",
+    "promise-map",
+    "series",
+    "parallel"
+  ],
+  "author": "Jesse Wertheim",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jaawerth/swear/issues"
+  },
+  "homepage": "https://github.com/jaawerth/swear#readme",
+  "devDependencies": {
+    "babel": "^6.0.12",
+    "core.lambda": "^1.0.0",
+    "tape": "^4.2.2"
+  },
+  "dependencies": {
+    "is-array": "^1.0.1",
+    "is-callable": "^1.1.0",
+    "is-promise": "^2.1.0",
+    "transducers.js": "github:jaawerth/transducers.js"
+  }
+}
