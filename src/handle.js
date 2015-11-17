@@ -1,19 +1,19 @@
 'use strict';
 const isPromise = require('is-promise');
 
-function lift(thenFn, catchFn, promise) {
+function handle(thenFn, catchFn, promise) {
   if (arguments.length >= 3) {
-    return _lift3(thenFn, catchFn, promise);
+    return _handle3(thenFn, catchFn, promise);
   } else if (arguments.length === 2) {
-    return _lift2(thenFn, catchFn);
+    return _handle2(thenFn, catchFn);
   } else if (arguments.length === 1) {
-    return (catchFn, promise) => lift(thenFn, catchFn, promise);
+    return (catchFn, promise) => handle(thenFn, catchFn, promise);
   } else {
     throw new Error('Must pass at least one argument');
   }
 }
 
-function _lift2(thenFn, catchOrPromise) {
+function _handle2(thenFn, catchOrPromise) {
   if (isPromise(catchOrPromise)) {
     return catchOrPromise.then(thenFn);
   } else {
@@ -21,8 +21,8 @@ function _lift2(thenFn, catchOrPromise) {
   }
 }
 
-function _lift3(then, catchFn, promise) {
+function _handle3(then, catchFn, promise) {
   return promise.then(then).catch(catchFn);
 }
 
-module.exports = lift;
+module.exports = handle;
