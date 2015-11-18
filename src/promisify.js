@@ -1,16 +1,20 @@
 'use strict';
-
+const isCallable = require('is-callable');
+const isInteger = require('is-integer');
 
 module.exports = promisify;
 
 function promisify(fn) {
-  return function(...args) {
+  if (!isCallable(fn)) throw new TypeError('Must provide a function.');
+  return function promisified(...args) {
     return new Promise(function(resolve ,reject) {
-      try {
-        resolve(fn(...args));
-      }	catch(e) {
-        reject(e);
-      }
+      args.push(function callback(err, res) {
+        if (err) reject(err);
+        resolve(res);
+      });
+      fn(...args);
     });
   };
 }
+
+module.exports = promisify;
