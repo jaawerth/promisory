@@ -4,6 +4,7 @@
   "description": "Promise utility methods. It'll come in handy, I swear... and that's a promise!",
   "main": "index.js",
   "scripts": {
+    "build": "babel src/ -d dist",
     "test": "tape tests/**/*.js"
   },
   "repository": {
