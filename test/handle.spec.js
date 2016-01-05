@@ -10,6 +10,7 @@ var resultMatcher = curry(3, function(expected, t, res) {
 });
 var assertResolve = resultMatcher('Resolved'), assertReject = resultMatcher('Rejected');
 test('testing handle method', function(t) {
+  // t.plan(4);
   t.test('thenFn, catchFn, promise', function(t) {
     t.plan(2);
     swear.handle(assertResolve(t), t.fail, resolved);
