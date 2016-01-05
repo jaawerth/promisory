@@ -1,6 +1,6 @@
 'use strict';
 
-const curry     = require('core.lambda');
+const curry     = require('core.lambda').curry;
 const isArray   = require('is-array');
 const {toArray} = require('transducers.js');
 

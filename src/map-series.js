@@ -1,7 +1,9 @@
 'use strict';
+const curry = require('core.lambda').curry;
 
+module.exports = curry(2, mapSeries);
 
-function swMapSeries(mapper, promisesOrVals) {
+function mapSeries(mapper, promisesOrVals) {
   return Promise.all(promisesOrVals).then(values => values.reduce(function(prev, promise, i, array) {
     return prev.then(function() {
       return promise.then(function(result) {
@@ -11,4 +13,3 @@ function swMapSeries(mapper, promisesOrVals) {
   }, Promise.resolve()));
 }
 
-module.exports = swMapSeries;
