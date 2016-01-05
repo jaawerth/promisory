@@ -27,6 +27,7 @@
   "homepage": "https://github.com/jaawerth/swear#readme",
   "devDependencies": {
     "babel": "^5.8.29",
+    "blue-tape": "^0.1.11",
     "core.lambda": "^1.0.0",
     "eslint": "^1.10.3",
     "eslint-config-jw": "^1.1.0",
