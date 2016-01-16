@@ -6,7 +6,7 @@ function race(...promises) {
   let resolve, reject;
   const clear = () => resolve = reject = Function.prototype;
 
-  let winner = new Promise(function(res, rej) {
+  const winner = new Promise(function(res, rej) {
     resolve = res;
     reject = rej;
   });
