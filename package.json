@@ -5,6 +5,7 @@
   "main": "dist/index.js",
   "scripts": {
     "build": "babel src/ -d dist",
+    "lint": "eslint src",
     "test": "babel-tape-runner test/*.spec.js | tap-diff"
   },
   "repository": {
