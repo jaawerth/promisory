@@ -27,11 +27,12 @@
   },
   "homepage": "https://github.com/jaawerth/swear#readme",
   "devDependencies": {
-    "babel": "^5.8.34",
+    "babel": "^6.3.26",
     "babel-cli": "^6.4.0",
     "babel-plugin-transform-function-bind": "^6.3.13",
     "babel-plugin-transform-object-assign": "^6.3.13",
     "babel-plugin-transform-object-rest-spread": "^6.3.13",
+    "babel-plugin-transform-runtime": "^6.4.3",
     "babel-preset-es2015": "^6.3.13",
     "babel-tape-runner": "^2.0.0",
     "core.lambda": "^1.0.0",
@@ -45,7 +46,6 @@
     "is-array": "^1.0.1",
     "is-callable": "^1.1.0",
     "is-iterator-like": "^1.0.4",
-    "is-promise": "^2.1.0",
-    "transducers.js": "github:jaawerth/transducers.js"
+    "is-promise": "^2.1.0"
   }
 }
