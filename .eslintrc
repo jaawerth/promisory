@@ -1,8 +1,10 @@
-rules:
-  indent:
-    - 1
-    - 2
-env:
-  es6: true
-  node: true
-extends: 'jw'
+{
+  "rules": {
+    "indent": [1, 2],
+  },
+  "env": {
+    "es6": true,
+    "node": true
+  },
+  "extends": "jw"
+} 
