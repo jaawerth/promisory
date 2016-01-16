@@ -1,7 +1,7 @@
 'use strict';
 
 var test = require('tape');
-var swear = require('../dist');
+var swear = require('../src');
 var curry = require('core.lambda').curry;
 var resolved = Promise.resolve('Resolved'), rejected = Promise.reject('Rejected');
 

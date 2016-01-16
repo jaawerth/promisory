@@ -1,5 +1,5 @@
 'use strict';
-const swear     = require('../');
+const swear     = require('../src');
 const test      = require('tape');
 const isPromise = require('is-promise');
 test('promisify', function(t) {
@@ -15,15 +15,13 @@ test('promisify', function(t) {
   }
 
   const to = swear.promisify(timeoutNodeback);
-  const toBound = swear.promisify(timeoutNodeback, 'foo');
+  // const toBound = swear.promisify(timeoutNodeback, 'foo');
   const p1 = to(100);
-  const p1Bound = toBound(100);
 
   t.ok(isPromise(p1), 'promisified function returns a promise');
 
   p1.then(res => {
     t.equals(typeof res.thisArg, 'undefined');
-    t.ok(res.elapsed >= 100);
-    console.log('Elapsed:', res.elapsed, ' | thisArg:', res.thisArg);
-  })
+    t.ok(res.elapsed >= 99, `time elapsed, ${res.elapsed}, should be >= 100ms, to show promisified function works as expected`);
+  });
 });

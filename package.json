@@ -5,7 +5,7 @@
   "main": "dist/index.js",
   "scripts": {
     "build": "babel src/ -d dist",
-    "test": "tape test/*.spec.js"
+    "test": "babel-tape-runner test/*.spec.js | tap-diff"
   },
   "repository": {
     "type": "git",
@@ -28,15 +28,22 @@
   "devDependencies": {
     "babel": "^5.8.34",
     "babel-cli": "^6.4.0",
-    "blue-tape": "^0.1.11",
+    "babel-plugin-transform-function-bind": "^6.3.13",
+    "babel-plugin-transform-object-assign": "^6.3.13",
+    "babel-plugin-transform-object-rest-spread": "^6.3.13",
+    "babel-preset-es2015": "^6.3.13",
+    "babel-tape-runner": "^2.0.0",
     "core.lambda": "^1.0.0",
     "eslint": "^1.10.3",
     "eslint-config-jw": "^1.1.0",
+    "sinon": "^1.17.2",
+    "tap-diff": "^0.1.1",
     "tape": "^4.2.2"
   },
   "dependencies": {
     "is-array": "^1.0.1",
     "is-callable": "^1.1.0",
+    "is-iterator-like": "^1.0.4",
     "is-promise": "^2.1.0",
     "transducers.js": "github:jaawerth/transducers.js"
   }
