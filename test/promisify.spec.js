@@ -3,7 +3,7 @@ const swear     = require('../src');
 const test      = require('tape');
 const isPromise = require('is-promise');
 test('promisify', function(t) {
-  t.plan(3);
+  t.plan(5);
   
   function timeoutNodeback(to, callback) {
     const d0 = new Date();
@@ -15,13 +15,19 @@ test('promisify', function(t) {
   }
 
   const to = swear.promisify(timeoutNodeback);
-  // const toBound = swear.promisify(timeoutNodeback, 'foo');
+  const toBound = swear.promisify(timeoutNodeback, 'foo');
   const p1 = to(100);
+  const p2 = toBound(100);
 
   t.ok(isPromise(p1), 'promisified function returns a promise');
 
   p1.then(res => {
     t.equals(typeof res.thisArg, 'undefined');
-    t.ok(res.elapsed >= 99, `time elapsed, ${res.elapsed}, should be >= 100ms, to show promisified function works as expected`);
+    t.ok(res.elapsed >= 100, `time elapsed, ${res.elapsed}, should be >= 100ms, to show promisified function works as expected`);
+  });
+
+  p2.then(res => {
+    t.equals(res.thisArg, 'foo', 'binds callback to thisArg');
+    t.ok(res.elapsed >= 100, `time elapsed, ${res.elapsed}, should be >= 100ms, to show promisified function works as expected`);
   });
 });
