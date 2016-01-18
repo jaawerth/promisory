@@ -1,5 +1,5 @@
 'use strict';
-const curry = require('core.lambda').curry;
+const curry = require('./util').curry;
 
 module.exports = curry(2, tap);
 

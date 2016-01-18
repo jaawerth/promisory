@@ -2,7 +2,7 @@
 
 var test = require('tape');
 var swear = require('../src');
-var curry = require('core.lambda').curry;
+var curry = require('./util').curry;
 var resolved = Promise.resolve('Resolved'), rejected = Promise.reject('Rejected');
 
 var resultMatcher = curry(3, function(expected, t, res) {

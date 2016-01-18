@@ -16,51 +16,41 @@ const isArray = Array.isArray || function isArray(value) {
 
 const ITERATOR = Symbol && typeof Symbol.iterator === 'symbol' ? Symbol.iterator : '@@iterator';
 
-const map = function(iterable, mapper) {
-  let iterator;
-
+const arrayFrom = Array.from || function arrayFrom(iterable) {
+  var iterator;
   if (isArray(iterable)) {
-    return iterable.map(mapper);
+    return iterable;
   } else if (iterable[ITERATOR]) {
     iterator = iterable[ITERATOR]();
   } else if (isIteratorLike(iterable)) {
     iterator = iterable;
   } else {
-    throw new TypeError("Don't know how to iterator " + iterable);
+    throw new TypeError(`Don't know how to iterate ${iterable}`);
   }
 
-  const results = [];
-  for (let step = iterator.next(), i = 0; !step.done; step = iterator.next()) {
-    results.push(mapper(step.value, i++, iterable));
-  }
-  return results;
-};
-
-const reduce = function reduce(iterable, reducer, value) {
-  let iterator;
-
-  if (isArray(iterable)) {
-    return iterable.reduce(reducer, value);
-  } else if (iterable[ITERATOR]) {
-    iterator = iterable[ITERATOR]();
-  } else if (isIteratorLike(iterable)) {
-    iterator = iterable;
-  } else {
-    throw new TypeError("Can't iterate " + iterable);
-  }
-
-  let i = 0;
-  if (arguments.length < 3) {
-    value = iterator.next();
-    i++;
-  }
-
+  const array = [];
   for (let step = iterator.next(); !step.done; step = iterator.next()) {
-    value = reducer(value, step.value, i++, iterable);
+    array.push(step.value);
   }
-  return value;
+  return array;
 };
+
+
+const curry = _curry(2, _curry);
+function _curry(n, f) {
+  return curried([]);
+
+  function curried(args) {
+    return function(...newArgs) {
+      var allArgs  = args.concat(newArgs);
+      var argCount = allArgs.length;
+
+      /* eslint prefer-spread: 0 */
+      return argCount < n ? curried(allArgs): f.apply(null, allArgs);
+    };
+  }
+}
 
 module.exports = {
-  every, isArray, reduce, ITERATOR, objToString, map
+  every, isArray, arrayFrom, ITERATOR, objToString, curry
 };

@@ -16,8 +16,8 @@ test('promisify', function(t) {
 
   const to = swear.promisify(timeoutNodeback);
   const toBound = swear.promisify(timeoutNodeback, 'foo');
-  const p1 = to(100);
-  const p2 = toBound(100);
+  const p1 = to(101);
+  const p2 = toBound(101);
 
   t.ok(isPromise(p1), 'promisified function returns a promise');
 
