@@ -7,10 +7,10 @@ test('promisify', function(t) {
   
   function timeoutNodeback(to, callback) {
     const d0 = new Date();
-    var self = this;
-    setTimeout(function() {
+
+    setTimeout(() => {
       const d1 = new Date();
-      callback(null, { thisArg: self, elapsed: d1 - d0, d0, d1 });
+      callback(null, { thisArg: this, elapsed: d1 - d0, d0, d1 });
     }, to);
   }
 
