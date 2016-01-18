@@ -5,7 +5,6 @@ const curry = require('./util').curry;
 module.exports = curry(2, reduce);
 
 function reduce(reducer, initVal, iterable) {
-  console.log('args: ', arguments);
   let array;
   if (arguments.length < 3) {
     iterable = initVal;
