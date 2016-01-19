@@ -10,8 +10,7 @@ const methods = {
   reduce: require('./reduce'),
   series: require('./series'),
   spread: require('./spread'),
-  tap: require('./tap'),
-  then: require('./then')
+  tap: require('./tap')
 };
 
 module.exports = methods;

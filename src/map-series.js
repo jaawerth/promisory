@@ -1,17 +1,13 @@
 'use strict';
-const curry = require('./util').curry;
-
-module.exports = curry(2, mapSeries);
+const arrayFrom = require('./util').arrayFrom;
 
 /**
  * Same as `map`, but waits for the previous mapped element to finish before mapping the next
- * @param  {function} mapper       The mapper function
  * @param  {Array|Iterable} promisesOrVals Array or iterable or promises or values
+ * @param  {function} mapper       The mapper function
  * @return {Promise<array>}                Promise of an array of results
  */
-const arrayFrom = require('./util').arrayFrom;
-
-function mapSeries(mapper, promisesOrVals) {
+function mapSeries(promisesOrVals, mapper) {
   promisesOrVals = arrayFrom(promisesOrVals);
   
   return promisesOrVals.reduce(function(prevResults, pOrV, i, array) {
@@ -24,3 +20,5 @@ function mapSeries(mapper, promisesOrVals) {
     });
   }, Promise.resolve([]));
 }
+
+module.exports = mapSeries;

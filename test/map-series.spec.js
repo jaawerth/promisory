@@ -14,9 +14,8 @@ test('map-series', function(t) {
     t.plan(1);
     const promisesAndValues = nums.slice(0, 5).map(n => Promise.resolve(n))
       .concat(nums.slice(5, 10));
-    const mappedResults = mapSeries(
-      n => timeout(x => x * 2, 300, n)
-    )(promisesAndValues);
+    const mappedResults = mapSeries(promisesAndValues, n => timeout(x => x * 2, 300, n));
+
     mappedResults.then(function(results) {
       t.deepEqual(results, nums.map(x => x * 2), 'Mapped results should match');
     }).catch(err => t.fail(err));
@@ -33,7 +32,7 @@ test('map-series', function(t) {
     const mappers = deferreds.map(() => x => x).map(m => sinon.spy(m));
     const resolved = deferreds.map(d => sinon.spy(d, 'resolve'));
 
-    mapSeries((x, i) => mappers[i](x, i))(promises).then(() => {
+    mapSeries(promises, (x, i) => mappers[i](x, i)).then(() => {
       // spies.forEach(spy => t.ok(spy.called, 'all spies were called'));
       t.doesNotThrow(() => sinon.assert.callOrder(...resolved.reverse()), undefined, 'Promises were resolved backwards for test case');
       t.doesNotThrow(() => sinon.assert.callOrder(...mappers), undefined, 'Mappers were called in order despite order of promise resolution');
@@ -52,13 +51,13 @@ test('map-series', function(t) {
     t.plan(2);
 
     const set = new Set(nums.map(n => Promise.resolve(n)));
-    mapSeries(x => x * 2, set).then(results => {
+    mapSeries(set, x => x * 2).then(results => {
       t.deepEqual(results, nums.map(x => x * 2), 'maps a Set to an array');
     }).catch(err => t.fail(err));
 
     const iterator = nums[Symbol.iterator]();
 
-    mapSeries(x => x * 2, iterator).then(results => {
+    mapSeries(iterator, x => x * 2).then(results => {
       t.deepEqual(results, nums.map(x => x * 2), 'maps an iterator to an array');
     }).catch(err => t.fail(err));
 

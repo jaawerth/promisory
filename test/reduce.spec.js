@@ -10,23 +10,23 @@ test('reduce', function(t) {
   const sum = (x, y) => x + y;
 
   const fail = err => t.fail(err);
-  reduce(sum, pNums).then(results => {
+  reduce(pNums, sum).then(results => {
     t.equal(results, 15, 'should reduce array of promises');
   }).catch(err => t.fail(err));
 
-  reduce(sum, new Set(pNums)).then(results => {
+  reduce(new Set(pNums), sum).then(results => {
     t.equal(results, 15, 'should work on any iterable');
   }).catch(fail);
 
-  reduce(sum, nums).then(results => {
+  reduce(nums, sum).then(results => {
     t.equal(results, 15, 'should work on promises OR values');
   }).catch(fail);
 
-  reduce(sum, 1, pNums).then(results => {
+  reduce(pNums, sum, 1).then(results => {
     t.equal(results, 16, 'should work with or without an initial value');
   }).catch(fail);
 
-  reduce(sum, Promise.resolve(1), nums).then(results => {
+  reduce(nums, sum, Promise.resolve(1)).then(results => {
     t.equal(results, 16, 'initial value should work with a value or a promise');
   }).catch(fail);
 });

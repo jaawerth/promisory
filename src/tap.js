@@ -1,7 +1,4 @@
 'use strict';
-const curry = require('./util').curry;
-
-module.exports = curry(2, tap);
 
 /**
  * For side effects. Run a function on a promise's result, returning original resolution value.
@@ -9,9 +6,11 @@ module.exports = curry(2, tap);
  * @param  {Promise} promise Promise to run on
  * @return {Promise}         Promise that resolves to original resolution value
  */
-function tap(thenFn, promise) {
+function tap(promise, thenFn) {
   return promise.then(function(res) {
     thenFn(res);
     return res;
   });
 }
+
+module.exports = tap;
