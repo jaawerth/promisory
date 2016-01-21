@@ -51,6 +51,13 @@ function _curry(n, f) {
   }
 }
 
+const mapObject = function mapObj(mapper, obj) {
+  return Object.keys(obj).reduce(function(mapped, key) {
+    mapped[key] = mapper(obj[key], key, obj);
+    return mapped;
+  }, {});
+};
+
 module.exports = {
-  every, isArray, arrayFrom, ITERATOR, objToString, curry
+  every, isArray, arrayFrom, ITERATOR, objToString, curry, mapObject
 };
