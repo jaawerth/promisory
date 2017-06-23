@@ -45,6 +45,7 @@
     "is-array": "^1.0.1",
     "is-callable": "^1.1.0",
     "is-iterator-like": "^1.0.4",
-    "is-promise": "^2.1.0"
+    "is-promise": "^2.1.0",
+    "transduce": "^0.10.2"
   }
 }
