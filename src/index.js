@@ -19,8 +19,4 @@ const fn = {
 const _ = {...fn, ...toPartial};
 
 
-
-
-
-
-// module.exports = methods;
+module.exports = _;
