@@ -8,6 +8,7 @@
     "lint": "eslint src",
     "test": "babel-tape-runner test/*.spec.js | tap-diff"
   },
+  "type": "commonjs",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/jaawerth/swear.git"
@@ -27,25 +28,24 @@
   },
   "homepage": "https://github.com/jaawerth/swear#readme",
   "devDependencies": {
-    "babel": "^6.3.26",
-    "babel-cli": "^6.4.0",
-    "babel-plugin-transform-function-bind": "^6.3.13",
-    "babel-plugin-transform-object-assign": "^6.3.13",
-    "babel-plugin-transform-object-rest-spread": "^6.3.13",
-    "babel-plugin-transform-runtime": "^6.4.3",
-    "babel-preset-es2015": "^6.3.13",
+    "@babel/cli": "^7.12.1",
+    "@babel/core": "^7.12.1",
+    "@babel/preset-env": "^7.12.1",
     "babel-tape-runner": "^2.0.0",
-    "eslint": "^1.10.3",
+    "eslint": "^7.11.0",
+    "eslint-config-airbnb-base": "^14.2.0",
     "eslint-config-jw": "^1.1.0",
-    "sinon": "^1.17.2",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-node": "^11.1.0",
+    "sinon": "^9.2.0",
     "tap-diff": "^0.1.1",
-    "tape": "^4.2.2"
+    "tape": "^5.0.1"
   },
   "dependencies": {
     "is-array": "^1.0.1",
     "is-callable": "^1.1.0",
     "is-iterator-like": "^1.0.4",
-    "is-promise": "^2.1.0",
+    "is-promise": "^4.0.0",
     "transduce": "^0.10.2"
   }
 }
