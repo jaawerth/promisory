@@ -20,6 +20,10 @@ module.exports = {
       allowTemplateLiterals: true,
       avoidEscape: true,
     }],
+    'no-param-reassign': ['warn', { props: false }],
+    'no-plusplus': 'off',
+    'no-use-before-define': 'off',
+    'no-underscore-dangle': 'off',
     strict: ['warn', 'global'],
   },
 };

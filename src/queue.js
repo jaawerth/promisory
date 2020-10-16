@@ -16,7 +16,7 @@ class Task {
   then(onResolve, onReject) {
     return this[Task.protocol.result].then(onResolve, onReject);
   }
-:qa
+
   catch(onReject) {
     return this[Task.protocol.result].catch(onReject);
   }
